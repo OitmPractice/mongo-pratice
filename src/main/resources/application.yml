@@ -1,0 +1,3 @@
+mongodb:
+  url: url #本地不需要此字段，远程需要配置
+  database: test

@@ -1,7 +1,6 @@
 package com.oitm.mongo.practice;
 
 import com.oitm.mongo.practice.entity.Article;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,8 @@ public class MongoDBTest {
                     .setUrl("url"+i)
                     .setTags(Arrays.asList("java","mongo"))
                     .setVisitCount(0L)
-                    .setAddTime(new Date());
+                    .setCtime(new Date())
+                    .setMtime(new Date());
             mongoTemplate.save(article);
         }
 
@@ -81,7 +81,8 @@ public class MongoDBTest {
                     .setUrl("url"+i)
                     .setTags(Arrays.asList("java","mongo"))
                     .setVisitCount(0L)
-                    .setAddTime(new Date());
+                    .setCtime(new Date())
+                    .setMtime(new Date());
             articles.add(article);
         }
         mongoTemplate.insert(articles,Article.class);

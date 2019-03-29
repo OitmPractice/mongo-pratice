@@ -18,8 +18,19 @@ import java.util.List;
 
 @Data
 @Accessors(chain = true)
-@Document(collection = "article_info")
+@Document(collection = "article")
 public class Article {
+
+    public static final String TITLE = "title";
+    public static final String URL = "url";
+    public static final String AUTHOR = "author";
+    public static final String TAGS = "tags";
+    public static final String VISIT_COUNT = "visit_count";
+    public static final String CTIME = "ctime";
+    public static final String MTIME = "mtime";
+
+    public static final String ARTICLE_COLLECTION = "article";
+
 
     @Id
     private String id;
@@ -33,7 +44,9 @@ public class Article {
     private List<String> tags;
     @Field("visit_count")
     private Long visitCount;
-    @Field("add_time")
-    private Date addTime;
+    @Field("ctime")
+    private Date ctime;
+    @Field("mtime")
+    private Date mtime;
 
 }
