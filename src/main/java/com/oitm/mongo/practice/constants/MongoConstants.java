@@ -3,7 +3,6 @@ package com.oitm.mongo.practice.constants;
 /**
  * @Description:
  * @Author: song_shu_ran
- * @Date: 2019-03-27 11:44
  */
 
 public class MongoConstants {

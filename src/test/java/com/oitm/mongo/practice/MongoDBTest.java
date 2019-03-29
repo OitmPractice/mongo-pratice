@@ -16,11 +16,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @Description: 测试类
- * @Author: song_shu_ran
- * @Date: 2019-03-15 15:28
- */
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -102,12 +98,12 @@ public class MongoDBTest {
 
 
         Query query2 = Query.query(Criteria.where("author").is("mo1"));
-        mongoTemplate.remove(query2,"article_info");
+        mongoTemplate.remove(query2,"article");
         List<Article> all2 = mongoTemplate.findAll(Article.class);
         System.out.println(all2.size());
 
 //        mongoTemplate.dropCollection(Article.class);
-//        mongoTemplate.dropCollection("article_info");
+//        mongoTemplate.dropCollection("article");
     }
 
     @Test

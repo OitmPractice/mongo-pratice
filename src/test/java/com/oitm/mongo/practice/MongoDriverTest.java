@@ -1,13 +1,9 @@
 package com.oitm.mongo.practice;
 
-import com.mongodb.DBRef;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
-import com.oitm.mongo.practice.constants.MongoConstants;
 import com.oitm.mongo.practice.entity.Article;
 import org.bson.Document;
-import org.bson.types.ObjectId;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +15,7 @@ import java.util.Date;
 
 import static com.mongodb.client.model.Filters.*;
 
-/**
- * @Description:
- * @Author: song_shu_ran
- * @Date: 2019-03-29 16:29
- */
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MongoDriverTest {
