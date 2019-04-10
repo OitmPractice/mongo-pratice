@@ -1,5 +1,6 @@
 package com.oitm.mongo.practice;
 
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.result.DeleteResult;
@@ -57,12 +58,14 @@ public class MongoDriverTest {
     @Test
     public void testQuery() {
         // 查询所有
-//        FindIterable<Document> documents = articleCollection.find();
-//        MongoCursor<Document> cursor = documents.iterator();
-//        while (cursor.hasNext()){
-//            Document document = cursor.next();
-//            System.out.println(document);
-//        }
+        FindIterable<Document> documents = articleCollection.find();
+        try (MongoCursor<Document> cursor = documents.iterator()) {
+            while (cursor.hasNext()) {
+                Document document = cursor.next();
+                System.out.println(document);
+            }
+        }
+
 
         //根据_id查询
         String id = "5c9ddd2f3d428cc67aed0598";
@@ -78,34 +81,41 @@ public class MongoDriverTest {
 //        System.out.println(document3);
 
         //IN查询 （先创建Oitm1、Oitm2）
-//        ArrayList titles = new ArrayList<>();
-//        titles.add("Oitm1");
-//        titles.add("Oitm2");
-//        MongoCursor<Document> cursor = articleCollection.find().filter(in(Article.TITLE, titles)).iterator();
-//        while (cursor.hasNext()) {
-//            Document document4 = cursor.next();
-//            System.out.println(document4);
-//        }
+        ArrayList titles = new ArrayList<>();
+        titles.add("Oitm1");
+        titles.add("Oitm2");
+        try (MongoCursor<Document> cursor = articleCollection.find().filter(in(Article.TITLE, titles)).iterator()) {
+            while (cursor.hasNext()) {
+                Document document4 = cursor.next();
+                System.out.println(document4);
+            }
+        }
+
 
         //OR查询
-//        MongoCursor<Document> cursor = articleCollection.find().filter(or(eq(Article.TITLE, "Oitm1"), eq(Article.TITLE, "Oitm2"))).iterator();
-//        while (cursor.hasNext()) {
-//            Document document5 = cursor.next();
-//            System.out.println(document5);
-//        }
+        try (MongoCursor<Document> cursor = articleCollection.find().filter(or(eq(Article.TITLE, "Oitm1"), eq(Article.TITLE, "Oitm2"))).iterator()) {
+            while (cursor.hasNext()) {
+                Document document5 = cursor.next();
+                System.out.println(document5);
+            }
+        }
+
 
         // sort
-//        MongoCursor<Document> iterator = articleCollection.find().sort(new Document(Article.TITLE, -1)).iterator();
-//        while (iterator.hasNext()) {
-//            Document document8 = iterator.next();
-//            System.out.println(document8);
-//        }
+        try (MongoCursor<Document> iterator = articleCollection.find().sort(new Document(Article.TITLE, -1)).iterator()) {
+            while (iterator.hasNext()) {
+                Document document8 = iterator.next();
+                System.out.println(document8);
+            }
+        }
+
 
         //分页
-        MongoCursor<Document> iterator = articleCollection.find().skip(3).limit(2).iterator();
-        while (iterator.hasNext()) {
-            Document document9 = iterator.next();
-            System.out.println(document9);
+        try (MongoCursor<Document> iterator = articleCollection.find().skip(3).limit(2).iterator()){
+            while (iterator.hasNext()) {
+                Document document9 = iterator.next();
+                System.out.println(document9);
+            }
         }
 
         //关联查询   此处只是举例子
